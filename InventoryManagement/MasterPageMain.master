@@ -1,0 +1,93 @@
+﻿<%@ Master Language="C#" AutoEventWireup="false" CodeFile="MasterPageMain.master.cs" Inherits="MasterPageMain" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Inventory/frmManageUserOrdersMenu.aspx">Inventory Management System</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <%if (Session["LoginType"] == "UserLogin")
+                      {%>
+                    <li><a href="/Inventory/inventory.aspx">
+                        <img src="../images/searchproduct.jpg" width="100%" /></a></li>
+                    <%} %>
+                    <%if (Session["LoginType"] == "AdminLogin")
+                      {%>
+                    <li><a href="/Inventory/frmManageAdminOrders.aspx">
+                        <img src="../images/CustomerOrders.png" width="100%" /></a></li>
+
+                    <%}
+                      else
+                      {%>
+                    <li><a href="/Inventory/frmManageUserOrders.aspx">
+                        <img src="../images/UserOrders.jpg" width="100%" /></a></li>
+                    <%} %>
+
+                    <%if (Session["LoginType"] == "AdminLogin")
+                      {%>
+                    <li><a href="/Inventory/frmProducts.aspx">
+                        <img src="../images/products.jpg" width="100%" /></a></li>
+                    <li><a href="/Inventory/frmManageSuppliers.aspx">
+                        <img src="../images/supplier.jpg" width="100%" /></a></li>
+                    <%} %>
+                    <%if (Session["LoginType"] == "AdminLogin")
+                      {%>
+                    <li><a href="/Inventory/frmManageUsers.aspx">
+                        <img src="../images/users.jpg" width="100%" /></a></li>
+                    <li><a href="/Account/frmAdminEditProfile.aspx">
+                        <img src="../images/user.jpg" width="100%" /></a></li>
+                    <%}
+                      else
+                      {%>
+                    <li><a href="/Account/frmEditProfile.aspx">
+                        <img src="../images/User.jpg" width="100%" /></a></li>
+                    <%} %>
+                                  <%if (Session["LoginType"] == "AdminLogin")
+                      {%>
+                  <li><a href="/Account/frmAdminChangePassword.aspx">
+                        <img src="../images/changepassword.jpg" width="100%" /></a></li>
+                    <%}
+                      else
+                      {%>
+                  <li><a href="/Account/frmChangePassword.aspx">
+                        <img src="../images/changepassword.jpg" width="100%" /></a></li>
+                    <%} %>
+                  
+
+                    <li><a href="/Inventory/Logout.aspx">
+                        <img src="../images/logout.jpg" width="100%" /></a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    <form id="frm1" runat="server">
+        <div class="container">
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+    </form>
+    <script src="Scripts/jquery-2.1.0.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>
